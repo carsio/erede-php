@@ -246,7 +246,7 @@ class Transaction implements RedeSerializable, RedeUnserializable
      */
     public function __construct($amount = null, $reference = null)
     {
-        $this->setAmount($amount);
+        $this->setAmountWithoutCalc($amount);
         $this->setReference($reference);
     }
 
@@ -518,6 +518,18 @@ class Transaction implements RedeSerializable, RedeUnserializable
     public function setAmount($amount)
     {
         $this->amount = ceil($amount * 100);
+        return $this;
+    }
+
+    /**
+     *
+     * @param int $amount
+     *
+     * @return Transaction
+     */
+    public function setAmountWithoutCalc($amount)
+    {
+        $this->amount = $amount;
         return $this;
     }
 
